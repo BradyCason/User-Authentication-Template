@@ -17,7 +17,7 @@ const validateUser = [
         .isEmail().withMessage(`Email must be a valid email.`)
         .custom(async value => {
             const user = await db.findUserByEmail(value);
-            if (user.length >= 1) {
+            if (user) {
                 throw new Error('Email already in use');
             }
         }),
@@ -42,7 +42,6 @@ const signupPost = [
                 return next(err);
             }
             
-            console.log("Adding user")
             await db.addUser(firstName, lastName, email, hashedPassword, false)
         });
         res.redirect("/");
@@ -50,7 +49,6 @@ const signupPost = [
 ];
 
 function loginPost(req, res, next){
-    console.log("test")
     passport.authenticate("local", {
         successRedirect: "/",
         failureRedirect: "/"
