@@ -12,5 +12,6 @@ function indexGet(req, res) {
 }
 
 module.exports = {
-    sampleGet
+    sampleGet,
+    indexGet
 }

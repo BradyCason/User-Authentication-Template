@@ -1,9 +1,10 @@
+const { Router } = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require("bcryptjs");
 
-const authRouter = express.Router();
+const authRouter = Router();
 
 authRouter.get("/sign-up", (req, res) => res.render("sign-up-form"));
 
@@ -73,3 +74,5 @@ passport.deserializeUser(async (id, done) => {
       done(err);
     }
 });
+
+module.exports = authRouter;
