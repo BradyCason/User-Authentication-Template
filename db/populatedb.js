@@ -4,16 +4,14 @@ require('dotenv').config()
 const { Client } = require("pg");
 
 const SQL = `
-CREATE TABLE IF NOT EXISTS usernames (
+CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR ( 255 )
+  firstName VARCHAR(50),
+  lastName VARCHAR(50),
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(255),
+  membershipStatus VARCHAR(20)
 );
-
-INSERT INTO usernames (username) 
-VALUES
-  ('Bryan'),
-  ('Odin'),
-  ('Damon');
 `;
 
 async function main() {
